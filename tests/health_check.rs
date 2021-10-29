@@ -27,7 +27,7 @@ fn spawn_app() -> String {
 async fn subscribe_returns_a_200_for_valid_form_data() {
 	let app_address = spawn_app();
 	let client = reqwest::Client::new();
-	let body = "name=le%20guin@email=ursula_le_guin%40gmail.com";
+	let body = "name=le%20guin&email=ursula_le_guin%40gmail.com";
 
 	// Act
 	let response = client
@@ -59,7 +59,7 @@ async fn subscribe_returns_a_400_when_data_is_missing() {
 			.body(invalid_body)
 			.send()
 			.await
-			.expect("Failed to execut request.");
+			.expect("Failed to execute request.");
 
 		// Assert
 		assert_eq!(
